@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>北极光之夜。</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        .kuang {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(5, 5, 5);
+            filter: contrast(30);
+        }
+        
+        .droplet {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: rgb(61, 233, 99);
+            filter: blur(20px);
+            animation: fall 3s linear infinite;
+            opacity: 0;
+        }
+        
+        .kuang div:nth-of-type(2) {
+            animation-delay: 1.5s;
+        }
+        
+        .kuang div:nth-of-type(3) {
+            animation-delay: 2s;
+        }
+        
+        @keyframes fall {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) translateY(-500%);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(0.5) translateY(-100%);
+            }
+            100% {
+                transform: scale(0.3) translateY(0px);
+            }
+        }
+        
+        .quan {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: rgb(61, 233, 99);
+            filter: blur(20px);
+            animation: zhuan 3s infinite;
+        }
+        
+        @keyframes zhuan {
+            0% {
+                transform: scale(1) rotate(0deg);
+            }
+            50% {
+                transform: scale(1.1) rotate(180deg);
+                height: 90px;
+                border-top-left-radius: 45%;
+                border-bottom-left-radius: 48%;
+            }
+            100% {
+                transform: scale(1) rotate(360deg);
+            }
+        }
+        
+        span {
+            position: absolute;
+            color: rgb(184, 182, 182);
+            font-size: 26px;
+            font-family: 'fangsong';
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="kuang">
+        <div class="droplet"></div>
+        <div class="droplet"></div>
+        <div class="droplet"></div>
+        <div class="quan"></div>
+        <span>99%</span>
+    </div>
+</body>
+
+</html>
