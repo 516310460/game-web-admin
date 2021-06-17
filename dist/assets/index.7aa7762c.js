@@ -1,0 +1,1 @@
+import s from"./index.86e57d11.js";import{k as a,l as o,n as e,L as c,o as n,q as t,s as d,y as r}from"./vendor.c2cc062a.js";var m=a({name:"Welcome",components:{House:s}});const l=r();o("data-v-d062623a");const p={class:"welcome"};e();const v=l(((s,a,o,e,r,m)=>{const l=c("House");return n(),t("div",p,[d(l)])}));m.render=v,m.__scopeId="data-v-d062623a";export default m;

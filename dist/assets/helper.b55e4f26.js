@@ -1,0 +1,1 @@
+import{aR as t}from"./vendor.c2cc062a.js";function s(s,c="lang"){const e={};return Object.keys(s).forEach((n=>{const o=s[n].default;let a=n.replace(`./${c}/`,"").replace(/^\.\//,"");const r=a.lastIndexOf(".");a=a.substring(0,r);const l=a.split("/"),f=l.shift(),i=l.join(".");f&&(i?(t(e,f,e[f]||{}),t(e[f],i,o)):t(e,f,o||{}))})),e}export{s as g};
