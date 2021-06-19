@@ -4,80 +4,36 @@ import { BasicColumn } from '/@/components/Table';
 import { FormSchema } from '/@/components/Table';
 import { h } from 'vue';
 import { Tag } from 'ant-design-vue';
+import { getToken } from '/@/utils/auth';
 
 export const columns: BasicColumn[] = [
-  // {
-  //   title: 'ID',
-  //   dataIndex: 'id',
-  //   fixed: 'left',
-  //   width: 200,
-  // },
   {
     title: 'ID',
     dataIndex: 'id',
   },
   {
-    dataIndex: 'roomId',
-    title: '大厅id',
+    dataIndex: 'language',
+    title: '语言',
   },
   {
-    dataIndex: 'gameIndex',
-    title: '游戏关数',
+    dataIndex: 'bannerName',
+    title: '名称',
   },
   {
-    dataIndex: 'targetAmount',
-    title: '过关目标数量',
+    dataIndex: 'imageUrl',
+    title: '图片地址',
   },
   {
-    dataIndex: 'completed',
-    title: '已完成数量',
+    dataIndex: 'hrefUrl',
+    title: '链接',
   },
   {
-    dataIndex: 'maxAmount',
-    title: '单账户最高投入数量',
-  },
-  {
-    dataIndex: 'interestRate',
-    title: '每期收益率',
-  },
-  {
-    dataIndex: 'serviceCharge',
-    title: '手续费(扣除平台币比例)',
-  },
-  {
-    dataIndex: 'startTime',
-    title: '开始时间',
-  },
-  {
-    dataIndex: 'endTime',
-    title: '结束时间',
+    dataIndex: 'sort',
+    title: '排序',
   },
   {
     dataIndex: 'state',
-    title: '游戏状态',
-    customRender: ({ record }) => {
-      let text = '';
-      switch (record.state) {
-        case 0:
-          text = '待开启';
-          break;
-        case 1:
-          text = '已开启';
-          break;
-        case 2:
-          text = '已售罄';
-          break;
-        case 3:
-          text = '已退款';
-          break;
-        case 4:
-          text = '已结算';
-          break;
-        default:
-          break;
-      }
-      return h(Tag, {}, () => text);
-    },
+    title: '状态',
   },
 ];
 
@@ -119,7 +75,14 @@ export const managementFormSchema: FormSchema[] = [
   {
     field: 'imageUrl',
     label: '图片地址',
-    component: 'Input',
+    component: 'aUpload',
+    componentProps: {
+      headers: {
+        token: getToken(),
+      },
+      fileName: 'file',
+      boxType:'banner',
+    },
     required: true,
   },
   {
@@ -128,8 +91,22 @@ export const managementFormSchema: FormSchema[] = [
     component: 'Input',
     required: true,
   },
-  // sort
-  // query	integer
-  // state
-  // query	integer
+  {
+    field: 'sort',
+    label: '排序',
+    component: 'InputNumber',
+    required: true,
+  },
+  {
+    field: 'state',
+    label: '状态',
+    component: 'Select',
+    required: true,
+    componentProps: {
+      options: [
+        { label: '停用', value: 0 },
+        { label: '启用', value: 1 },
+      ],
+    },
+  },
 ];

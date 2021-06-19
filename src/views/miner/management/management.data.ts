@@ -21,7 +21,7 @@ export const columns: BasicColumn[] = [
     dataIndex: 'price',
   },
   {
-    title: '汇报倍数',
+    title: '回报倍数',
     dataIndex: 'rate',
   },
   {
@@ -100,7 +100,7 @@ export const managementFormSchema: FormSchema[] = [
   },
   {
     field: 'rate',
-    label: '汇报倍数',
+    label: '回报倍数',
     component: 'Input',
     required: true,
   },

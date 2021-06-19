@@ -4,7 +4,7 @@
     @register="registerModal"
     :title="getTitle"
     @ok="handleSubmit"
-    :width="1200"
+    :width="1360"
   >
 
     <BasicTable

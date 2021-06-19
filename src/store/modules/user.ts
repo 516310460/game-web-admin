@@ -119,7 +119,7 @@ export const useUserStore = defineStore({
                 children: [],
                 meta: {
                   title: item.title,
-                  affix: true,
+                  affix: false,
                   icon: item.icon,
                 },
               });
@@ -134,6 +134,7 @@ export const useUserStore = defineStore({
                     meta: {
                       icon: item.icon,
                       title: item.title,
+                      affix: false,
                       ignoreKeepAlive: true,
                     },
                     component: item.buttenUrl,
@@ -187,7 +188,7 @@ export const useUserStore = defineStore({
               children: [],
               meta: {
                 title: item.title,
-                affix: true,
+                affix: false,
                 icon: item.icon,
               },
             });
@@ -202,6 +203,7 @@ export const useUserStore = defineStore({
                   meta: {
                     icon: item.icon,
                     title: item.title,
+                    affix: false,
                     ignoreKeepAlive: true,
                   },
                   component: item.buttenUrl,

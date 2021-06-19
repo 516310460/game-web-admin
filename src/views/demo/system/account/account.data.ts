@@ -22,6 +22,10 @@ export const columns: BasicColumn[] = [
     dataIndex: 'coinName',
   },
   {
+    title: '充值地址',
+    dataIndex: 'address',
+  },
+  {
     title: '可用余额',
     dataIndex: 'avalibleBalance',
   },

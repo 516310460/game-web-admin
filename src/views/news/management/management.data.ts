@@ -120,7 +120,14 @@ export const managementFormSchema: FormSchema[] = [
   {
     field: 'image',
     label: '图片地址',
-    component: 'Input',
+    component: 'aUpload',
+    componentProps: {
+      // headers: {
+      //   AuthToken: getToken(),
+      // },
+      fileName: 'file',
+      boxType:'banner',
+    },
     required: true,
   },
   {

@@ -14,7 +14,7 @@ enum Api {
   CcMarketCoinList = '/admin/banner/findAll',
   GetMarketCoin = '/Manager/CcMarketCoin/GetMarketCoin',
   // 添加banner
-  AddMarketCoin = '/admin/banner/addUploadFile',
+  AddMarketCoin = '/admin/banner/addBanner',
   // 修改banner
   UpdateMarketCoin = '/admin/banner/updGame',
   DeleteMarketCoin = '/Manager/banner/delBanner',

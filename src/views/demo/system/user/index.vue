@@ -16,13 +16,8 @@
           @click="handleCreate"
         >新增用户</a-button>
       </template> -->
-      <template #action="{ record }">
-        <TableAction :actions="[
-            {
-              icon: 'clarity:note-edit-line',
-              onClick: handleEdit.bind(null, record),
-            },
-          ]" />
+      <template #action="{ record, column }">
+        <TableAction :actions="createActions(record, column)" />
       </template>
     </BasicTable>
     <AccountModal
@@ -32,10 +27,10 @@
   </PageWrapper>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 
-import { BasicTable, useTable, TableAction } from '/@/components/Table';
-import { getAccountList } from '/@/api/demo/system';
+import { BasicTable, useTable, TableAction, BasicColumn } from '/@/components/Table';
+import { getAccountList, updateLevelApi } from '/@/api/demo/system';
 import { PageWrapper } from '/@/components/Page';
 import DeptTree from './DeptTree.vue';
 
@@ -48,6 +43,7 @@ export default defineComponent({
   name: 'AccountManagement',
   components: { BasicTable, PageWrapper, DeptTree, AccountModal, TableAction },
   setup() {
+    const currentEditKeyRef = ref('');
     const [registerModal, { openModal }] = useModal();
     const [registerTable, { reload }] = useTable({
       title: '用户列表',
@@ -57,11 +53,12 @@ export default defineComponent({
         labelWidth: 80,
         schemas: searchFormSchema,
       },
+      showIndexColumn: false,
       useSearchForm: true,
       showTableSetting: true,
       bordered: true,
       actionColumn: {
-        width: 80,
+        width: 220,
         title: '操作',
         dataIndex: 'action',
         slots: { customRender: 'action' },
@@ -74,12 +71,17 @@ export default defineComponent({
       });
     }
 
-    function handleEdit(record: Recordable) {
-      console.log(record);
-      openModal(true, {
-        record,
-        isUpdate: true,
-      });
+    // function handleEdit(record: Recordable) {
+    //   console.log(record);
+    //   openModal(true, {
+    //     record,
+    //     isUpdate: true,
+    //   });
+    // }
+
+    function handleEdit(record: EditRecordRow) {
+      currentEditKeyRef.value = record.key;
+      record.onEdit?.(true);
     }
 
     async function handleDelete(record: Recordable) {
@@ -94,6 +96,66 @@ export default defineComponent({
       reload({ searchInfo: { deptId } });
     }
 
+    function handleCancel(record: EditRecordRow) {
+      currentEditKeyRef.value = '';
+      record.onEdit?.(false, false);
+    }
+
+    async function handleSave(record: EditRecordRow) {
+      const pass = await record.onEdit?.(false, true);
+      if (pass) {
+        currentEditKeyRef.value = '';
+        await updateLevelApi({
+          id: record.id,
+          level: record.level,
+          saleLevel: record.saleLevel,
+        })
+      }
+    }
+
+    function handleModalEdit(record: EditRecordRow, state: Number) {
+      openModal(true, {
+        record,
+        isUpdate: state == 1 ? false : true,
+        type: state
+      });
+    }
+
+    function createActions(record: EditRecordRow, column: BasicColumn): ActionItem[] {
+        if (!record.editable) {
+          return [
+            {
+              label: '编辑',
+              disabled: currentEditKeyRef.value ? currentEditKeyRef.value !== record.key : false,
+              onClick: handleEdit.bind(null, record),
+            },
+            {
+              label: '查上级',
+              disabled: currentEditKeyRef.value ? currentEditKeyRef.value !== record.key : false,
+              onClick: handleModalEdit.bind(null, record, 1),
+            },
+            {
+              label: '查下级',
+              disabled: currentEditKeyRef.value ? currentEditKeyRef.value !== record.key : false,
+              onClick: handleModalEdit.bind(null, record, 2),
+            },
+          ];
+        }
+        return [
+          {
+            label: '保存',
+            onClick: handleSave.bind(null, record, column),
+          },
+          {
+            label: '取消',
+            popConfirm: {
+              title: '是否取消编辑',
+              confirm: handleCancel.bind(null, record, column),
+            },
+          },
+        ];
+      }
+
     return {
       registerTable,
       registerModal,
@@ -102,6 +164,7 @@ export default defineComponent({
       handleDelete,
       handleSuccess,
       handleSelect,
+      createActions
     };
   },
 });

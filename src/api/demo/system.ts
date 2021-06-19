@@ -30,6 +30,11 @@ enum Api {
   approve = '/admin/account/approve',
   // 上下分
   backRecharge = '/admin/account/backRecharge',
+  // 查询上下级
+  findAllByUserId = '/admin/user/findAllByUserId',
+
+  // 修改用户级别和矿机级别
+  updateLevel = '/admin/user/updateLevel',
 }
 
 export const getAccountList = (params: AccountParams) =>
@@ -40,6 +45,17 @@ export const findAccountByInfoApi = (params: AccountParams) =>
 
 export const findWithDrewListApi = (params: AccountParams) =>
   defHttp.post<AccountListGetResultModel>({ url: Api.findWithDrewList, params });
+
+export const findAllByUserIdApi = (params: AccountParams) =>
+  defHttp.post<AccountListGetResultModel>({ url: Api.findAllByUserId, params });
+
+// 修改用户级别和矿机级别
+export function updateLevelApi(params: any) {
+  return defHttp.post<any>({
+    url: Api.updateLevel,
+    params,
+  });
+}
 
 // 提币审核
 export function approveApi(params: any) {
