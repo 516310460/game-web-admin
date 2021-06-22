@@ -34,7 +34,7 @@ enum Api {
   findAllByUserId = '/admin/user/findAllByUserId',
 
   // 修改用户级别和矿机级别
-  updateLevel = '/admin/user/updateLevel',
+  updateLevel = '/admin/user/userUpdate',
 }
 
 export const getAccountList = (params: AccountParams) =>

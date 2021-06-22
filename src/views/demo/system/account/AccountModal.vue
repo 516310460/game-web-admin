@@ -31,7 +31,7 @@
           </span>
         </Dropdown> -->
         <a-select
-          v-if="isRows.length"x
+          v-if="isRows.length"
           v-model:value="selectValue"
           style="width: 120px"
           ref="select"
@@ -40,6 +40,7 @@
           <a-select-option value="" disabled>请选择审核</a-select-option>
           <a-select-option value="1">审核通过</a-select-option>
           <a-select-option value="3">审核拒绝</a-select-option>
+          <a-select-option value="4">提币失败</a-select-option>
         </a-select>
       </template>
       <template #action="{ record }">

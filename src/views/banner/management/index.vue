@@ -5,14 +5,16 @@
     fixedHeight
     contentClass="flex"
   >
-    <BasicTable @register="registerTable">
+    <BasicTable @register="registerTable" class="w-full">
       <template #toolbar>
         <a-button
           type="primary"
+          v-if="funcKeyArray.includes('add')"
           @click="handleCreate"
         >新增Banner</a-button>
         <a-button
           type="primary"
+          v-if="funcKeyArray.includes('delete')"
           @click="getSelectRowList"
         >批量删除</a-button>
       </template>
@@ -21,6 +23,7 @@
             {
               icon: 'ant-design:delete-outlined',
               color: 'error',
+              auth: !funcKeyArray.includes('delete'),
               popConfirm: {
                 title: '是否确认删除',
                 confirm: handleDelete.bind(null, record),
@@ -36,7 +39,7 @@
   </PageWrapper>
 </template>
 <script lang="ts">
-import { defineComponent, toRaw } from 'vue';
+import { defineComponent, toRaw, ref } from 'vue';
 
 import { BasicTable, useTable, TableAction } from '/@/components/Table';
 import {
@@ -50,6 +53,8 @@ import { useModal } from '/@/components/Modal';
 import ManagementModal from './ManagementModal.vue';
 
 import { columns, searchFormSchema } from './management.data';
+
+import { getFuncKeyArray } from '/@/hooks/web/useFunction';
 
 export default defineComponent({
   name: 'AccountManagement',
@@ -79,6 +84,9 @@ export default defineComponent({
         type: 'checkbox',
       },
     });
+
+    const funcKeyArray = ref<string[]>();
+    funcKeyArray.value = getFuncKeyArray()
 
     async function getSelectRowList() {
       let rows = getSelectRows();
@@ -132,6 +140,7 @@ export default defineComponent({
       handleSuccess,
       handleSelect,
       getSelectRowList,
+      funcKeyArray
     };
   },
 });

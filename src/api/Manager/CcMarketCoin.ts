@@ -18,6 +18,8 @@ enum Api {
   // 修改游戏
   UpdateMarketCoin = '/admin/game/updGame',
   DeleteMarketCoin = '/Manager/CcMarketCoin/DeleteMarketCoin',
+  // 一键完成
+  finish = '/admin/game/finish',
 }
 
 // 分页获取行情市场列表
@@ -61,6 +63,22 @@ export function DeleteMarketCoinApi(
   return defHttp.post<BasicPageDTO>(
     {
       url: Api.DeleteMarketCoin,
+      params,
+    },
+    {
+      errorMessageMode: mode,
+    }
+  );
+}
+
+// 一键完成
+export function finishApi(
+  params: any,
+  mode: ErrorMessageMode = 'modal'
+) {
+  return defHttp.post<BasicPageDTO>(
+    {
+      url: Api.finish,
       params,
     },
     {

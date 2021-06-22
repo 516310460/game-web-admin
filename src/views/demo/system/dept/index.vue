@@ -1,6 +1,6 @@
 <template>
   <div>
-    <BasicTable @register="registerTable">
+    <BasicTable @register="registerTable" class="w-full">
       <template #toolbar>
         <a-button
           type="primary"

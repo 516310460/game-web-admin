@@ -1,6 +1,6 @@
 <template>
   <div class="p-4">
-    <BasicTable @register="registerTable">
+    <BasicTable @register="registerTable" class="w-full">
       <template #customTitle>
         <span>
           姓名

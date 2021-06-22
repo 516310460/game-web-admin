@@ -1,13 +1,15 @@
 <template>
   <div>
-    <BasicTable @register="registerTable">
+    <BasicTable @register="registerTable" class="w-full">
       <template #toolbar>
         <a-button
           type="primary"
+          v-if="funcKeyArray.includes('add')"
           @click="handleCreate"
         > 新增角色 </a-button>
         <a-button
           type="primary"
+          v-if="funcKeyArray.includes('delete')"
           @click="getSelectRowList"
         >批量删除</a-button>
       </template>
@@ -15,15 +17,18 @@
         <TableAction :actions="[
             {
               icon: 'ant-design:setting-outlined',
+              auth: !funcKeyArray.includes('assignPermissions'),
               onClick: handleRoleEdit.bind(null, record),
             },
             {
               icon: 'clarity:note-edit-line',
+              auth: !funcKeyArray.includes('update'),
               onClick: handleEdit.bind(null, record),
             },
             {
               icon: 'ant-design:delete-outlined',
               color: 'error',
+              auth: !funcKeyArray.includes('delete'),
               popConfirm: {
                 title: '是否确认删除',
                 confirm: handleDelete.bind(null, record),
@@ -44,7 +49,7 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 
 import { BasicTable, useTable, TableAction } from '/@/components/Table';
 
@@ -56,6 +61,8 @@ import RoleModal from './RoleModal.vue';
 import RoleDrawer from './RoleDrawer.vue';
 
 import { columns, searchFormSchema } from './role.data';
+
+import { getFuncKeyArray } from '/@/hooks/web/useFunction';
 
 export default defineComponent({
   name: 'RoleManagement',
@@ -86,6 +93,9 @@ export default defineComponent({
         type: 'checkbox',
       },
     });
+
+    const funcKeyArray = ref<string[]>();
+    funcKeyArray.value = getFuncKeyArray()
 
     function handleRoleEdit(record: Recordable){
       openDrawer(true, {
@@ -144,7 +154,8 @@ export default defineComponent({
       handleSuccess,
       registerModal,
       getSelectRowList,
-      handleRoleEdit
+      handleRoleEdit,
+      funcKeyArray
     };
   },
 });

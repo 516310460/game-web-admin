@@ -90,9 +90,23 @@ export const formSchema: FormSchema[] = [
     required: true,
   },
   {
-    label: '功能标识,例如userAdd',
+    label: '功能类型',
     field: 'funcKey',
-    component: 'Input',
+    component: 'Select',
+    required: true,
+    componentProps: {
+      options: [
+        { label: '添加', value: 'add' },
+        { label: '修改', value: 'update' },
+        { label: '删除', value: 'delete' },
+        { label: '查上级', value: 'getSuperior' },
+        { label: '查下级', value: 'getSubordinate' },
+        { label: '上下余额', value: 'operatingBalance' },
+        { label: '提币审核', value: 'toExamine' },
+        { label: '分配权限', value: 'assignPermissions' },
+        { label: '一键完成', value: 'oneClickFinish' },
+      ],
+    },
   },
   {
     label: '状态',

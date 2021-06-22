@@ -45,7 +45,7 @@ export const columns: BasicColumn[] = [
       const state = record.state;
       const color = state == 1 || state == 2 ? 'green' : 'red';
       const text =
-        state == 0 ? '待审核' : state == 1 ? '审核通过' : state == 2 ? '已完成' : '审核拒绝';
+        state == 0 ? '待审核' : state == 1 ? '审核通过' : state == 2 ? '已完成' : state == 3 ? '审核拒绝' : '提币失败';
       return h(Tag, { color: color }, () => text);
     },
   },
@@ -88,6 +88,7 @@ export const searchModalFormSchema: FormSchema[] = [
         { label: '审核通过', value: 1 },
         { label: '已完成', value: 2 },
         { label: '审核拒绝', value: 3 },
+        { label: '提币失败', value: 4 },
       ],
     },
     colProps: { span: 8 },

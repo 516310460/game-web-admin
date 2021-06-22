@@ -1,5 +1,5 @@
 <template>
-  <BasicTable @register="registerTable">
+  <BasicTable @register="registerTable" class="w-full">
     <template #form-custom> custom-slot </template>
 
     <template #toolbar>

@@ -39,6 +39,8 @@ import AccountModal from './AccountModal.vue';
 
 import { columns, searchFormSchema } from './account.data';
 
+import { getFuncKeyArray } from '/@/hooks/web/useFunction';
+
 export default defineComponent({
   name: 'AccountManagement',
   components: { BasicTable, PageWrapper, DeptTree, AccountModal, TableAction },
@@ -64,6 +66,9 @@ export default defineComponent({
         slots: { customRender: 'action' },
       },
     });
+
+    const funcKeyArray = ref<string[]>();
+    funcKeyArray.value = getFuncKeyArray()
 
     function handleCreate() {
       openModal(true, {
@@ -109,6 +114,7 @@ export default defineComponent({
           id: record.id,
           level: record.level,
           saleLevel: record.saleLevel,
+          state: record.state,
         })
       }
     }
@@ -126,17 +132,20 @@ export default defineComponent({
           return [
             {
               label: '编辑',
-              disabled: currentEditKeyRef.value ? currentEditKeyRef.value !== record.key : false,
+              disabled: currentEditKeyRef.value || !funcKeyArray.value.includes('update') ? currentEditKeyRef.value !== record.key : false,
+              auth: !funcKeyArray.value.includes('update'),
               onClick: handleEdit.bind(null, record),
             },
             {
               label: '查上级',
-              disabled: currentEditKeyRef.value ? currentEditKeyRef.value !== record.key : false,
+              disabled: currentEditKeyRef.value || !funcKeyArray.value.includes('getSuperior')  ? currentEditKeyRef.value !== record.key : false,
+              auth: !funcKeyArray.value.includes('getSuperior'),
               onClick: handleModalEdit.bind(null, record, 1),
             },
             {
               label: '查下级',
-              disabled: currentEditKeyRef.value ? currentEditKeyRef.value !== record.key : false,
+              disabled: currentEditKeyRef.value || !funcKeyArray.value.includes('getSubordinate')  ? currentEditKeyRef.value !== record.key : false,
+              auth: !funcKeyArray.value.includes('getSubordinate'),
               onClick: handleModalEdit.bind(null, record, 2),
             },
           ];
@@ -164,7 +173,8 @@ export default defineComponent({
       handleDelete,
       handleSuccess,
       handleSelect,
-      createActions
+      createActions,
+      funcKeyArray
     };
   },
 });

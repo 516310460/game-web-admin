@@ -25,7 +25,7 @@ export default defineComponent({
     const isUpdate = ref(true);
 
     const [registerForm, { setFieldsValue, updateSchema, resetFields, validate }] = useForm({
-      labelWidth: 100,
+      labelWidth: 165,
       schemas: managementFormSchema,
       showActionButtonGroup: false,
       actionColOptions: {

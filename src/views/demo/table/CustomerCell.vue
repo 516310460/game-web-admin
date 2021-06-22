@@ -1,6 +1,6 @@
 <template>
   <div class="p-4">
-    <BasicTable @register="registerTable">
+    <BasicTable @register="registerTable" class="w-full">
       <template #id="{ record }"> ID: {{ record.id }} </template>
       <template #no="{ record }">
         <Tag color="green">

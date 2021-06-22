@@ -1,6 +1,6 @@
 <template>
   <div class="p-4">
-    <BasicTable @register="registerTable">
+    <BasicTable @register="registerTable" class="w-full">
       <template #expandedRowRender="{ record }">
         <span>No: {{ record.no }} </span>
       </template>

@@ -1,6 +1,6 @@
 <template>
   <div class="p-4">
-    <BasicTable @register="registerTable">
+    <BasicTable @register="registerTable" class="w-full">
       <template #toolbar>
         <a-button type="primary" @click="handleReloadCurrent"> 刷新当前页 </a-button>
         <a-button type="primary" @click="handleReload"> 刷新并返回第一页 </a-button>

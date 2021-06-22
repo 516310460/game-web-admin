@@ -18,12 +18,13 @@
       </template> -->
       <template #action="{ record }">
         <TableAction :actions="[
-            {
-              label: '审核提币',
-              onClick: handleEdit.bind(null, record),
-            },
+            // {
+            //   label: '审核提币',
+            //   onClick: handleEdit.bind(null, record),
+            // },
             {
               label: '上下余额',
+              auth: !funcKeyArray.includes('operatingBalance'),
               onClick: handleDrawerEdit.bind(null, record),
             },
           ]" />
@@ -42,7 +43,7 @@
   </PageWrapper>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 
 import { BasicTable, useTable, TableAction } from '/@/components/Table';
 import { findAccountByInfoApi } from '/@/api/demo/system';
@@ -55,6 +56,8 @@ import AccountModal from './AccountModal.vue';
 import MenuDrawer from './MenuDrawer.vue';
 
 import { columns, searchFormSchema } from './account.data';
+
+import { getFuncKeyArray } from '/@/hooks/web/useFunction';
 
 export default defineComponent({
   name: 'AccountManagement',
@@ -80,6 +83,9 @@ export default defineComponent({
         slots: { customRender: 'action' },
       },
     });
+
+    const funcKeyArray = ref<string[]>();
+    funcKeyArray.value = getFuncKeyArray()
 
     function handleCreate() {
       openModal(true, {
@@ -125,6 +131,7 @@ export default defineComponent({
       handleDelete,
       handleSuccess,
       handleSelect,
+      funcKeyArray
     };
   },
 });

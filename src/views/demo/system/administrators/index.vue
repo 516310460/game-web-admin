@@ -13,10 +13,12 @@
       <template #toolbar>
         <a-button
           type="primary"
+          v-if="funcKeyArray.includes('add')"
           @click="handleCreate"
         >新增账号</a-button>
         <a-button
           type="primary"
+          v-if="funcKeyArray.includes('delete')"
           @click="getSelectRowList"
         >批量删除</a-button>
       </template>
@@ -24,11 +26,13 @@
         <TableAction :actions="[
             {
               icon: 'clarity:note-edit-line',
+              auth: !funcKeyArray.includes('update'),
               onClick: handleEdit.bind(null, record),
             },
             {
               icon: 'ant-design:delete-outlined',
               color: 'error',
+              auth: !funcKeyArray.includes('delete'),
               popConfirm: {
                 title: '是否确认删除',
                 confirm: handleDelete.bind(null, record),
@@ -44,7 +48,7 @@
   </PageWrapper>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 
 import { BasicTable, useTable, TableAction } from '/@/components/Table';
 import { getManagerPageApi, DeleteManager } from '/@/api/Manager/Manager';
@@ -55,6 +59,8 @@ import { useModal } from '/@/components/Modal';
 import AccountModal from './AccountModal.vue';
 
 import { columns, searchFormSchema } from './account.data';
+
+import { getFuncKeyArray } from '/@/hooks/web/useFunction';
 
 export default defineComponent({
   name: 'AdministratorsManagement',
@@ -83,6 +89,9 @@ export default defineComponent({
         type: 'checkbox',
       },
     });
+
+    const funcKeyArray = ref<string[]>();
+    funcKeyArray.value = getFuncKeyArray()
 
     async function getSelectRowList() {
       let rows = getSelectRows();
@@ -131,6 +140,7 @@ export default defineComponent({
       handleSuccess,
       handleSelect,
       getSelectRowList,
+      funcKeyArray
     };
   },
 });

@@ -1,9 +1,10 @@
 <template>
   <div>
-    <BasicTable @register="registerTable">
+    <BasicTable @register="registerTable" class="w-full">
       <template #toolbar>
         <a-button
           type="primary"
+          v-if="funcKeyArray.includes('add')"
           @click="handleCreate"
         > 新增系统配置 </a-button>
       </template>
@@ -11,6 +12,7 @@
         <TableAction :actions="[
             {
               icon: 'clarity:note-edit-line',
+              auth: !funcKeyArray.includes('update'),
               onClick: handleEdit.bind(null, record),
             }
           ]" />
@@ -28,7 +30,7 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 
 import { BasicTable, useTable, TableAction } from '/@/components/Table';
 import { GetRolePageApi, DeleteRoleApi } from '/@/api/Manager/Config';
@@ -39,6 +41,8 @@ import MenuModal from './MenuModal.vue';
 import MenuDrawer from './MenuDrawer.vue';
 
 import { columns, searchFormSchema } from './menu.data';
+
+import { getFuncKeyArray } from '/@/hooks/web/useFunction';
 
 export default defineComponent({
   name: 'MenuManagement',
@@ -69,6 +73,9 @@ export default defineComponent({
         fixed: undefined,
       },
     });
+
+    const funcKeyArray = ref<string[]>();
+    funcKeyArray.value = getFuncKeyArray()
 
     function handleCreate() {
       openModal(true, {
@@ -101,6 +108,7 @@ export default defineComponent({
       handleEdit,
       handleSuccess,
       registerModal,
+      funcKeyArray
     };
   },
 });

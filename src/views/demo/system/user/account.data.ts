@@ -38,12 +38,30 @@ export const columns: BasicColumn[] = [
   {
     title: '状态',
     dataIndex: 'state',
-    customRender: ({ record }) => {
-      const color = record.state == 'normal' ? 'green' : 'red';
-      const text =
-        record.state == 'normal' ? '正常' : record.state == 'locked' ? '锁定' : '暂停提币';
-      return h(Tag, { color: color }, () => text);
+    editRow: true,
+    editComponent: 'Select',
+    editComponentProps: {
+      options: [
+        {
+          label: '正常',
+          value: 'normal',
+        },
+        {
+          label: '锁定',
+          value: 'locked',
+        },
+        {
+          label: '暂停提币',
+          value: 'forbid',
+        },
+      ],
     },
+    // customRender: ({ record }) => {
+    //   const color = record.state == 'normal' ? 'green' : 'red';
+    //   const text =
+    //     record.state == 'normal' ? '正常' : record.state == 'locked' ? '锁定' : '暂停提币';
+    //   return h(Tag, { color: color }, () => text);
+    // },
   },
   {
     title: '创建时间',

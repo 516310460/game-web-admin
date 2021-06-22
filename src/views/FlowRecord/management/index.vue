@@ -5,7 +5,7 @@
     fixedHeight
     contentClass="flex"
   >
-    <BasicTable @register="registerTable">
+    <BasicTable @register="registerTable" class="w-full">
     </BasicTable>
     <ManagementModal
       @register="registerModal"
@@ -14,7 +14,7 @@
   </PageWrapper>
 </template>
 <script lang="ts">
-import { defineComponent, toRaw } from 'vue';
+import { defineComponent, toRaw, ref } from 'vue';
 
 import { BasicTable, useTable, TableAction } from '/@/components/Table';
 import { flowRecordQueryApi } from '/@/api/Manager/FlowRecord';
@@ -24,6 +24,8 @@ import { useModal } from '/@/components/Modal';
 import ManagementModal from './ManagementModal.vue';
 
 import { columns, searchFormSchema } from './management.data';
+
+import { getFuncKeyArray } from '/@/hooks/web/useFunction';
 
 export default defineComponent({
   name: 'AccountManagement',
@@ -53,6 +55,9 @@ export default defineComponent({
       //   type: 'checkbox',
       // },
     });
+
+    const funcKeyArray = ref<string[]>();
+    funcKeyArray.value = getFuncKeyArray()
 
     function handleCreate() {
       openModal(true, {
@@ -91,6 +96,7 @@ export default defineComponent({
       handleDelete,
       handleSuccess,
       handleSelect,
+      funcKeyArray
     };
   },
 });

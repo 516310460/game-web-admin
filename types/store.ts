@@ -37,6 +37,7 @@ export interface UserInfo {
   avatar: string;
   desc?: string;
   menus: any;
+  functions: any;
 }
 
 export interface BeforeMiniState {

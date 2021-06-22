@@ -4,6 +4,10 @@ import { Tag } from 'ant-design-vue';
 import { BasicColumn } from '/@/components/Table';
 import { FormSchema } from '/@/components/Table';
 import { GetRolePageApi } from '/@/api/Manager/Role';
+import {
+  Input,
+} from 'ant-design-vue';
+import { encryptByMd5 } from '/@/utils/cipher';
 
 export const columns: BasicColumn[] = [
   {
@@ -144,13 +148,28 @@ export const accountFormSchema: FormSchema[] = [
     field: 'password',
     component: 'InputPassword',
     required: true,
-    show: true,
+    render: ({ model, field }) => {
+      return h(Input.Password, {
+        placeholder: '请输入密码',
+        // value: model[field],
+        onChange: (e) => {
+          model[field] = encryptByMd5(e.target.value);
+        },
+      });
+    },
   },
   {
     label: '状态',
     field: 'state',
-    component: 'Input',
+    component: 'Select',
     required: true,
+    componentProps: {
+      options: [
+        { label: '正常', value: 'normal' },
+        { label: '锁定', value: 'locked' },
+        { label: '暂停提币', value: 'forbid' },
+      ],
+    },
   },
   // {
   //   label: '角色',
