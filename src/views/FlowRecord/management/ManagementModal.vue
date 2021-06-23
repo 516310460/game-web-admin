@@ -29,6 +29,14 @@ export default defineComponent({
       actionColOptions: {
         span: 23,
       },
+      // fieldMapToTime: [
+      //   // data为时间组件在表单内的字段，startTime，endTime为转化后的开始时间于结束时间
+      //   // 'YYYY-MM-DD'为时间格式，参考moment
+      //   // 两个值分开
+      //   ['time', ['beginDate', 'endDate'], 'YYYY-MM-DD'],
+      //   // 支持多个字段
+      //   // ['datetime1', ['startTime1', 'endTime1'], 'YYYY-MM-DD HH:mm:ss'],
+      // ],
     });
 
     const [registerModal, { setModalProps, closeModal }] = useModalInner(async (data) => {

@@ -25,11 +25,17 @@ enum Api {
   UpdateCountryConf = '/admin/Node/updNode',
   // 批量删除
   DeleteCountryConf = '/admin/Node/delNode',
+
+  // 用户购买的节点
+  nodeQuery = '/admin/Node/nodeQuery',
 }
 
 // 分页获取节点列表
 export const GetCountryConfPageApi = (params: GetCountryConfPageParams) =>
   defHttp.post<GetCountryConfPageDTO>({ url: Api.GetCountryConfPage });
+
+export const nodeQueryApi = (params: any) =>
+  defHttp.post<GetCountryConfPageDTO>({ url: Api.nodeQuery, params });
 
 // 获取所有节点列表
 export const GetCountryConfAllApi = (params: any) =>

@@ -1,7 +1,8 @@
 import { BasicColumn } from '/@/components/Table';
 import { FormSchema } from '/@/components/Table';
-import { h } from 'vue';
+import { h, nextTick } from 'vue';
 import { Tag } from 'ant-design-vue';
+import moment from 'moment';
 
 export const columns: BasicColumn[] = [
   {
@@ -118,44 +119,88 @@ export const columns: BasicColumn[] = [
 
 export const searchFormSchema: FormSchema[] = [
   {
-    field: 'status',
-    label: '交易对状态',
-    component: 'Select',
-    // required: true,
-    componentProps: {
-      options: [
-        { label: '正常', value: 1 },
-        { label: '退市', value: 2 },
-      ],
-    },
-    colProps: { span: 8 },
+    field: 'userName',
+    label: '用户名称',
+    component: 'Input',
+    colProps: { span: 6 },
   },
   {
-    field: 'isbuy',
-    label: '是否可购买',
-    component: 'Select',
-    componentProps: {
-      options: [
-        { label: '全部', value: '' },
-        { label: '是', value: 'true' },
-        { label: '否', value: 'false' },
-      ],
-    },
-    colProps: { span: 5 },
+    field: 'coinName',
+    label: '币种名称',
+    component: 'Input',
+    colProps: { span: 6 },
   },
   {
-    field: 'issale',
-    label: '是否可出售',
+    field: 'type',
+    label: '类型',
     component: 'Select',
     componentProps: {
       options: [
-        { label: '全部', value: '' },
-        { label: '是', value: 'true' },
-        { label: '否', value: 'false' },
+        { label: '充值', value: 1 },
+        { label: '提币', value: 2 },
+        { label: '内部转账', value: 3 },
+        { label: '币币交易', value: 4 },
+        { label: '手续费', value: 5 },
+        { label: '购买矿机', value: 6 },
+        { label: '参与游戏', value: 7 },
+        { label: '游戏收益', value: 8 },
+        { label: '矿机收益', value: 9 },
+        { label: '游戏', value: 10 },
+        { label: '矿机加速收益', value: 11 },
+        { label: '节点认购', value: 12 },
+        { label: '节点收益', value: 13 },
+        { label: '节点退款', value: 14 },
+        { label: '提现退款', value: 15 },
+        { label: '游戏推广收益', value: 16 },
+        { label: '游戏退款', value: 17 },
+        { label: '购买矿机', value: 18 },
+        { label: '平级奖', value: 19 },
+        { label: '积分', value: 20 },
+        { label: '后台充值', value: 21 },
+        { label: '后台下账', value: 22 },
       ],
     },
-    colProps: { span: 5 },
+    colProps: { span: 6 },
   },
+  // {
+  //   field: 'time',
+  //   component: 'RangePicker',
+  //   label: '起止日期',
+  //   componentProps: ({formActionType})=>{
+  //     return {
+  //       // format: 'YYYY-MM-DD HH:mm:ss',
+  //       onChange: (e)=>{
+  //         nextTick(()=>{
+  //           const { setFieldsValue } = formActionType;
+  //           // 表单设置值
+  //           setFieldsValue({
+  //             // time: [moment(e[0]._d).format('YYYY-MM-DD HH:mm:ss'), moment(e[1]._d).format('YYYY-MM-DD HH:mm:ss')]
+  //             a: `${moment(e[0]._d).format('YYYY-MM-DD HH:mm:ss')} ${moment(e[1]._d).format('YYYY-MM-DD HH:mm:ss')}`
+  //           })
+  //         })
+  //       }
+  //     }
+  //   },
+  //   colProps: { span: 6 },
+  // },
+  {
+    field: 'beginDate',
+    component: 'DatePicker',
+    label: '开始日期',
+    componentProps: {
+      format: 'YYYY-MM-DD',
+    },
+    colProps: { span: 6 },
+  },
+  {
+    field: 'endDate',
+    component: 'DatePicker',
+    label: '结束日期',
+    componentProps: {
+      format: 'YYYY-MM-DD',
+    },
+    colProps: { span: 6 },
+  }
 ];
 
 export const managementFormSchema: FormSchema[] = [

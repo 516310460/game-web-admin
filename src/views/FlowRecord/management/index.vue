@@ -36,12 +36,12 @@ export default defineComponent({
       title: '流水记录列表',
       api: flowRecordQueryApi,
       columns,
-      // // 搜索
-      // formConfig: {
-      //   labelWidth: 90,
-      //   schemas: searchFormSchema,
-      // },
-      // useSearchForm: true,
+      // 搜索
+      formConfig: {
+        labelWidth: 80,
+        schemas: searchFormSchema,
+      },
+      useSearchForm: true,
       showTableSetting: true,
       bordered: true,
       canResize: true,
