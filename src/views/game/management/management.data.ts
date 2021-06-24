@@ -167,6 +167,9 @@ export const managementFormSchema: FormSchema[] = [
     component: 'DatePicker',
     required: true,
     componentProps: {
+      showTime: {
+        format: 'YYYY-MM-DD HH:mm:ss'
+      },
       valueFormat: 'YYYY-MM-DD HH:mm:ss',
     },
   },
@@ -176,6 +179,9 @@ export const managementFormSchema: FormSchema[] = [
     component: 'DatePicker',
     required: true,
     componentProps: {
+      showTime: {
+        format: 'YYYY-MM-DD HH:mm:ss'
+      },
       valueFormat: 'YYYY-MM-DD HH:mm:ss',
     },
   },
