@@ -30,8 +30,13 @@ export const columns: BasicColumn[] = [
     width: 90,
   },
   {
+    title: '收币金额',
+    dataIndex: 'amount',
+  },
+  {
     title: '收币地址',
     dataIndex: 'toAddress',
+    width: 400,
   },
   {
     title: 'txid',
