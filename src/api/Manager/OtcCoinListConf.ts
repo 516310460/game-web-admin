@@ -27,7 +27,7 @@ enum Api {
 
 // 分页获取OTC币种
 export const GetOtcCoinListConfPageApi = (params: GetOtcCoinListConfPageParams) =>
-  defHttp.post<GetOtcCoinListConfPageDTO>({ url: Api.GetOtcCoinListConfPage });
+  defHttp.post<GetOtcCoinListConfPageDTO>({ url: Api.GetOtcCoinListConfPage, params });
 
 // 新增OTC币种
 export function AddOtcCoinListConfApi(

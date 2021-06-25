@@ -27,7 +27,7 @@ enum Api {
 
 // 分页获取支付方式
 export const GetPayListConfPageApi = (params: GetPayListConfPageParams) =>
-  defHttp.post<GetPayListConfPageDTO>({ url: Api.GetPayListConfPage });
+  defHttp.post<GetPayListConfPageDTO>({ url: Api.GetPayListConfPage, params });
 
 // 新增支付方式
 export function AddPayListConfApi(params: AddPayListConfParams, mode: ErrorMessageMode = 'modal') {

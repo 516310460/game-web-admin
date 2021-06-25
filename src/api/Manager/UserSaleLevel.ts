@@ -22,7 +22,7 @@ enum Api {
 
 // 分页获取行情市场列表
 export const CcMarketCoinListApi = (params: CcMarketCoinListParams) =>
-  defHttp.post<CcMarketCoinListDTO>({ url: Api.CcMarketCoinList });
+  defHttp.post<CcMarketCoinListDTO>({ url: Api.CcMarketCoinList, params });
 
 // 新增市场信息
 export function AddMarketCoinApi(params: AddMarketCoinParams, mode: ErrorMessageMode = 'modal') {

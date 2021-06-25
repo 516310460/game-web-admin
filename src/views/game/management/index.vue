@@ -22,7 +22,7 @@
         <TableAction :actions="[
             {
               label: '一键完成',
-              auth: !funcKeyArray.includes('oneClickFinish'),
+              auth: record.state != 1 || !funcKeyArray.includes('oneClickFinish'),
               onClick: handleFinish.bind(null, record),
             },
             {

@@ -6,6 +6,7 @@ export default {
   // basic-table setting
   table: {
     // Form interface request general configuration
+    // 窗体接口请求常规配置
     // support xxx.xxx.xxx
     fetchSetting: {
       // The field name of the current page passed to the background
@@ -20,7 +21,7 @@ export default {
       // Total number of tables returned by the interface field name
       // totalField: 'total',
       // 自定义total字段
-      totalField: 'count',
+      totalField: 'total',
     },
     // Number of pages that can be selected
     pageSizeOptions: ['10', '50', '80', '100'],
@@ -37,6 +38,7 @@ export default {
       };
     },
     // Custom general filter function
+    // 自定义常规筛选函数
     defaultFilterFn: (data: Partial<Recordable<string[]>>) => {
       return data;
     },

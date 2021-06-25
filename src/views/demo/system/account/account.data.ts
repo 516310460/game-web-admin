@@ -24,6 +24,7 @@ export const columns: BasicColumn[] = [
   {
     title: '充值地址',
     dataIndex: 'address',
+    width: 320,
   },
   {
     title: '可用余额',

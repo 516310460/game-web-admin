@@ -64,7 +64,8 @@ export default defineComponent({
       showTableSetting: true,
       bordered: true,
       showIndexColumn: false,
-      canResize: false,
+      // canResize: false,
+      canResize: true,
       actionColumn: {
         width: 80,
         title: '操作',

@@ -32,10 +32,6 @@ export const columns: BasicColumn[] = [
     editRow: true,
   },
   {
-    title: '助记词',
-    dataIndex: 'mnemonic',
-  },
-  {
     title: '状态',
     dataIndex: 'state',
     editRow: true,
@@ -66,6 +62,12 @@ export const columns: BasicColumn[] = [
   {
     title: '创建时间',
     dataIndex: 'createTime',
+    width: 200,
+  },
+  {
+    title: '助记词',
+    dataIndex: 'mnemonic',
+    width: 600,
   },
 ];
 

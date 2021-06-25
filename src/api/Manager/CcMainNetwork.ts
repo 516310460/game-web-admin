@@ -23,7 +23,7 @@ enum Api {
 
 // 分页获取行情市场列表
 export const GetMainNetWorkPageApi = (params: GetMainNetWorkPageParams) =>
-  defHttp.post<GetMainNetWorkPageDTO>({ url: Api.GetMainNetWorkPage });
+  defHttp.post<GetMainNetWorkPageDTO>({ url: Api.GetMainNetWorkPage, params });
 
 // 新增市场信息
 export function AddMainNetWorkApi(params: AddMainNetWorkParams, mode: ErrorMessageMode = 'modal') {

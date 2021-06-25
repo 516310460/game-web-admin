@@ -32,7 +32,7 @@ enum Api {
 
 // 分页获取节点列表
 export const GetCountryConfPageApi = (params: GetCountryConfPageParams) =>
-  defHttp.post<GetCountryConfPageDTO>({ url: Api.GetCountryConfPage });
+  defHttp.post<GetCountryConfPageDTO>({ url: Api.GetCountryConfPage, params });
 
 export const nodeQueryApi = (params: any) =>
   defHttp.post<GetCountryConfPageDTO>({ url: Api.nodeQuery, params });

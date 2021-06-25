@@ -26,7 +26,7 @@ enum Api {
 
 // 分页获取矿机管理
 export const GetTradePairPageApi = (params: GetTradePairPageParams) =>
-  defHttp.post<CcMarketCoinListDTO>({ url: Api.GetTradePairPage });
+  defHttp.post<CcMarketCoinListDTO>({ url: Api.GetTradePairPage, params });
 
 export const minerQueryApi = (params: any) =>
   defHttp.post<CcMarketCoinListDTO>({ url: Api.minerQuery, params });
