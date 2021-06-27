@@ -17,7 +17,8 @@ export default {
       // Field name of the form data returned by the interface
       // listField: 'items',
       // 自定义数组
-      listField: 'rows',
+      // listField: 'rows',
+      listField: 'umlist',
       // Total number of tables returned by the interface field name
       // totalField: 'total',
       // 自定义total字段

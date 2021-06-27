@@ -184,15 +184,13 @@ export function useDataSource(
       }
 
       // 表格数据源
-      const res = await api(params);
-      const data = res.umlist || res
-      const total = res.total || res
+      const data = await api(params);
 
       // 判定data是数组还是对象。是对象的话，就有分页，没有对象的话，就没有分页。区分是否是数组来判定是否分页
       const isArrayResult = Array.isArray(data);
 
       let resultItems: Recordable[] = isArrayResult ? data : get(data, listField);
-      const resultTotal: number = isArrayResult ? 0 : get(total, totalField);
+      const resultTotal: number = isArrayResult ? 0 : get(data, totalField);
 
       // 假如数据变少，导致总页数变少并小于当前选中页码，通过getPaginationRef获取到的页码是不正确的，需获取正确的页码再次执行
       if (resultTotal) {

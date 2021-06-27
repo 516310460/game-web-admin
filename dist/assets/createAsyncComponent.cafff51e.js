@@ -1,0 +1,1 @@
+import{bi as o,s as e,aI as a}from"./vendor.c2cc062a.js";import{a7 as n}from"./index.bb679890.js";function s(s,i={}){const{size:r="small",delay:t=100,timeout:m=3e4,loading:l=!1,retry:c=!0}=i;return o({loader:s,loadingComponent:l?e(a,{spinning:!0,size:r},null):void 0,timeout:m,delay:t,onError:c?(o,e,a,n)=>{o.message.match(/fetch/)&&n<=3?e():a()}:n})}export{s as c};
