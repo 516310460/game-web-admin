@@ -155,7 +155,8 @@ export const useUserStore = defineStore({
         // this.setRoleList(roleList);
         const sessionTimeout = this.sessionTimeout;
         sessionTimeout && this.setSessionTimeout(false);
-        !sessionTimeout && goHome && (await router.replace(PageEnum.BASE_HOME));
+        // !sessionTimeout && goHome && (await router.replace(PageEnum.BASE_HOME));
+        !sessionTimeout && goHome && (await router.replace(data.menus[0].children.length ? data.menus[0].children[0].path : data.menus[0].path));
         return data;
         // const { token } = data;
 
