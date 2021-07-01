@@ -90,8 +90,8 @@ export const columns: BasicColumn[] = [
     dataIndex: 'flowingStatus',
     customRender: ({ record }) => {
       const state = record.flowingStatus;
-      const color = state === 1 ? 'green' : 'red';
-      const text = state === 1 ? '收入' : '支出';
+      const color = state === "IN" ? 'green' : 'red';
+      const text = state === "IN" ? '收入' : '支出';
       return h(Tag, { color: color }, () => text);
     },
   },
