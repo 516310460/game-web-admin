@@ -1,10 +1,10 @@
 {
-  "name": "vben-admin",
-  "version": "0.0.4",
+  "name": "tgc",
+  "version": "0.0.5",
   "author": {
-    "name": "vben",
-    "email": "anncwb@126.com",
-    "url": "https://github.com/anncwb"
+    "name": "wanghong",
+    "email": "516310460@qq.com",
+    "url": "https://github.com/516310460"
   },
   "scripts": {
     "bootstrap": "yarn install",

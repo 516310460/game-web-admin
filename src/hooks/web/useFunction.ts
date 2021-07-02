@@ -17,7 +17,7 @@ export function getFuncKeyArray(){
   }
 
   if(userName == 'admin'){
-    funcKeyArray = ['add', 'delete', 'update', 'getSuperior', 'getSubordinate', 'operatingBalance', 'toExamine', 'assignPermissions', 'oneClickFinish']
+    funcKeyArray = ['query', 'add', 'delete', 'update', 'getSuperior', 'getSubordinate', 'operatingBalance', 'toExamine', 'assignPermissions', 'oneClickFinish']
   }
 
   return funcKeyArray

@@ -96,6 +96,7 @@ export const formSchema: FormSchema[] = [
     required: true,
     componentProps: {
       options: [
+        { label: '查询', value: 'query' },
         { label: '添加', value: 'add' },
         { label: '修改', value: 'update' },
         { label: '删除', value: 'delete' },

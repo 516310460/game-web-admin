@@ -113,7 +113,7 @@ export const columns: BasicColumn[] = [
   },
   {
     title: '流水备注',
-    dataIndex: 'remarkremark',
+    dataIndex: 'remark',
   },
 ];
 
